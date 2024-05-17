@@ -1,0 +1,56 @@
+[gd_scene load_steps=4 format=3 uid="uid://bs430k4m7pa8g"]
+
+[ext_resource type="Script" path="res://scripts/priana swarm.gd" id="1_kd0ac"]
+[ext_resource type="PackedScene" uid="uid://c6kj4y2jmoi28" path="res://scenes/reuseable/priana.tscn" id="2_egewa"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wt2tw"]
+radius = 70.0
+
+[node name="priana swarm" type="Node2D"]
+script = ExtResource("1_kd0ac")
+num = 2
+rad = 20
+
+[node name="playerpiranha" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="playerpiranha"]
+shape = SubResource("CircleShape2D_wt2tw")
+
+[node name="piranha2" parent="." instance=ExtResource("2_egewa")]
+position = Vector2(-20, 38)
+
+[node name="piranha8" parent="." instance=ExtResource("2_egewa")]
+position = Vector2(-1, 18)
+
+[node name="piranha7" parent="." instance=ExtResource("2_egewa")]
+position = Vector2(-46, 21)
+
+[node name="piranha11" parent="." instance=ExtResource("2_egewa")]
+position = Vector2(-28, -11)
+
+[node name="piranha10" parent="." instance=ExtResource("2_egewa")]
+position = Vector2(2, -40)
+
+[node name="piranha12" parent="." instance=ExtResource("2_egewa")]
+position = Vector2(-29, -50)
+
+[node name="piranha9" parent="." instance=ExtResource("2_egewa")]
+position = Vector2(40, 36)
+
+[node name="piranha6" parent="." instance=ExtResource("2_egewa")]
+position = Vector2(46, 12)
+
+[node name="piranha13" parent="." instance=ExtResource("2_egewa")]
+position = Vector2(49, -19)
+
+[node name="piranha5" parent="." instance=ExtResource("2_egewa")]
+position = Vector2(41, -45)
+
+[node name="piranha4" parent="." instance=ExtResource("2_egewa")]
+position = Vector2(0, 40)
+
+[node name="piranha3" parent="." instance=ExtResource("2_egewa")]
+position = Vector2(1, -11)
+
+[node name="piranha" parent="." instance=ExtResource("2_egewa")]
+position = Vector2(0, -61)

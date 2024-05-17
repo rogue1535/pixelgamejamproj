@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://b6b0rx3xoag6e"]
+
+[ext_resource type="Texture2D" uid="uid://tedbmxteloaj" path="res://assets/handmade/airtank.png" id="1_115aw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2fq70"]
+size = Vector2(16, 16)
+
+[node name="airtank" type="Area2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, -1)
+shape = SubResource("RectangleShape2D_2fq70")
+
+[node name="Airtank" type="Sprite2D" parent="."]
+position = Vector2(1, -1)
+texture = ExtResource("1_115aw")
