@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bldgcm16bn0c"]
+
+[ext_resource type="Texture2D" uid="uid://b8qk0l0x6dqjw" path="res://harpoon.png" id="1_p26k7"]
+
+[node name="Harpoon" type="Sprite2D"]
+position = Vector2(1.49012e-08, 0)
+scale = Vector2(0.3, 0.6)
+texture = ExtResource("1_p26k7")

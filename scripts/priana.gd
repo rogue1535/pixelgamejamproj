@@ -5,7 +5,7 @@ extends Area2D
 var boidsisee = []
 
 var vel := Vector2.ZERO
-var speed := 3.0
+var speed := 2.0
 var screensize : Vector2
 var mov := 33
 

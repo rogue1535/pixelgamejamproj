@@ -1,20 +1,17 @@
-[gd_scene load_steps=9 format=3 uid="uid://516fty67ksls"]
+[gd_scene load_steps=10 format=3 uid="uid://516fty67ksls"]
 
 [ext_resource type="Script" path="res://scripts/shark.gd" id="1_u8mft"]
 [ext_resource type="Texture2D" uid="uid://cflt3qrbdlm6d" path="res://scenes/reuseable/Shark-Animation-Sheet.png" id="2_dcmjv"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_q6pt7"]
-radius = 8.0
-height = 48.0
+radius = 5.0
+height = 35.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vys15"]
-size = Vector2(219.5, 158)
+size = Vector2(278.5, 158)
 
-[sub_resource type="Animation" id="Animation_wgvxl"]
-resource_name = "slow"
-length = 0.8
-loop_mode = 1
-step = 0.2
+[sub_resource type="Animation" id="Animation_u77u2"]
+length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -22,10 +19,10 @@ tracks/0/path = NodePath("Shark:frame_coords")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [Vector2i(0, 0), Vector2i(1, 0), Vector2i(2, 0), Vector2i(3, 0)]
+"values": [Vector2i(0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_xkiqt"]
@@ -45,8 +42,11 @@ tracks/0/keys = {
 "values": [Vector2i(4, 0), Vector2i(1, 0), Vector2i(6, 0), Vector2i(7, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_u77u2"]
-length = 0.001
+[sub_resource type="Animation" id="Animation_wgvxl"]
+resource_name = "slow"
+length = 0.8
+loop_mode = 1
+step = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -54,10 +54,10 @@ tracks/0/path = NodePath("Shark:frame_coords")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [Vector2i(0, 0)]
+"values": [Vector2i(0, 0), Vector2i(1, 0), Vector2i(2, 0), Vector2i(3, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7axsp"]
@@ -67,12 +67,18 @@ _data = {
 "slow": SubResource("Animation_wgvxl")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jhnnr"]
+size = Vector2(8.33333, 8.33333)
+
 [node name="shark" type="CharacterBody2D"]
+collision_layer = 3
+collision_mask = 3
+motion_mode = 1
+platform_on_leave = 2
 script = ExtResource("1_u8mft")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2(0, 2)
+position = Vector2(0, 1)
 rotation = 1.5708
 scale = Vector2(1.2, 1.2)
 shape = SubResource("CapsuleShape2D_q6pt7")
@@ -85,10 +91,10 @@ metadata/_edit_lock_ = true
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="vision" type="Area2D" parent="."]
 visible = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="vision"]
 position = Vector2(-1.25, 0)
 shape = SubResource("RectangleShape2D_vys15")
 
@@ -98,4 +104,17 @@ libraries = {
 }
 autoplay = "slow"
 
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[node name="mouth" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="mouth"]
+position = Vector2(21, 1)
+rotation = -1.5708
+scale = Vector2(1.8, 1.8)
+shape = SubResource("RectangleShape2D_jhnnr")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="body_entered" from="vision" to="." method="_on_vision_body_entered"]
+[connection signal="body_exited" from="vision" to="." method="_on_vision_body_exited"]
+[connection signal="body_shape_entered" from="mouth" to="." method="_on_mouth_body_shape_entered"]

@@ -16,15 +16,6 @@ rad = 20
 [node name="CollisionShape2D" type="CollisionShape2D" parent="playerpiranha"]
 shape = SubResource("CircleShape2D_wt2tw")
 
-[node name="piranha2" parent="." instance=ExtResource("2_egewa")]
-position = Vector2(-20, 38)
-
-[node name="piranha8" parent="." instance=ExtResource("2_egewa")]
-position = Vector2(-1, 18)
-
-[node name="piranha7" parent="." instance=ExtResource("2_egewa")]
-position = Vector2(-46, 21)
-
 [node name="piranha11" parent="." instance=ExtResource("2_egewa")]
 position = Vector2(-28, -11)
 
@@ -34,20 +25,11 @@ position = Vector2(2, -40)
 [node name="piranha12" parent="." instance=ExtResource("2_egewa")]
 position = Vector2(-29, -50)
 
-[node name="piranha9" parent="." instance=ExtResource("2_egewa")]
-position = Vector2(40, 36)
-
-[node name="piranha6" parent="." instance=ExtResource("2_egewa")]
-position = Vector2(46, 12)
-
 [node name="piranha13" parent="." instance=ExtResource("2_egewa")]
 position = Vector2(49, -19)
 
 [node name="piranha5" parent="." instance=ExtResource("2_egewa")]
 position = Vector2(41, -45)
-
-[node name="piranha4" parent="." instance=ExtResource("2_egewa")]
-position = Vector2(0, 40)
 
 [node name="piranha3" parent="." instance=ExtResource("2_egewa")]
 position = Vector2(1, -11)

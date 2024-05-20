@@ -1,11 +1,71 @@
-[gd_scene load_steps=3 format=3 uid="uid://b6b0rx3xoag6e"]
+[gd_scene load_steps=10 format=3 uid="uid://b6b0rx3xoag6e"]
 
-[ext_resource type="Texture2D" uid="uid://tedbmxteloaj" path="res://assets/handmade/airtank.png" id="1_115aw"]
+[ext_resource type="Script" path="res://scenes/reuseable/airtank.gd" id="1_m6n5x"]
+[ext_resource type="Texture2D" uid="uid://bugugtpuytwx5" path="res://assets/fonts/Oxygen_Canister.png" id="1_r2aeo"]
+[ext_resource type="AudioStream" uid="uid://jtecyt1v047e" path="res://scenes/levels/life_pickup.wav" id="3_555kk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2fq70"]
 size = Vector2(16, 16)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4mrfh"]
+size = Vector2(68, 64.5)
+
+[sub_resource type="Animation" id="Animation_hvq03"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Airtank:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_k6st1"]
+resource_name = "notpickable"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Airtank:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_wvm3h"]
+resource_name = "pickable"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Airtank:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8nct8"]
+_data = {
+"RESET": SubResource("Animation_hvq03"),
+"notpickable": SubResource("Animation_k6st1"),
+"pickable": SubResource("Animation_wvm3h")
+}
+
 [node name="airtank" type="Area2D"]
+script = ExtResource("1_m6n5x")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1, -1)
@@ -13,4 +73,23 @@ shape = SubResource("RectangleShape2D_2fq70")
 
 [node name="Airtank" type="Sprite2D" parent="."]
 position = Vector2(1, -1)
-texture = ExtResource("1_115aw")
+texture = ExtResource("1_r2aeo")
+hframes = 2
+frame = 1
+
+[node name="Area2D" type="Area2D" parent="Airtank"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Airtank/Area2D"]
+shape = SubResource("RectangleShape2D_4mrfh")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_555kk")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_8nct8")
+}
+autoplay = "notpickable"
+
+[connection signal="body_shape_entered" from="Airtank/Area2D" to="." method="_on_area_2d_body_shape_entered"]
+[connection signal="body_shape_exited" from="Airtank/Area2D" to="." method="_on_area_2d_body_shape_exited"]

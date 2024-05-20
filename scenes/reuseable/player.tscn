@@ -1,12 +1,17 @@
-[gd_scene load_steps=13 format=3 uid="uid://c81t1hs72cpf"]
+[gd_scene load_steps=18 format=3 uid="uid://c81t1hs72cpf"]
 
 [ext_resource type="Script" path="res://scripts/Player.gd" id="1_uki6t"]
+[ext_resource type="Shader" path="res://scenes/reuseable/dmg.gdshader" id="2_7plv0"]
 [ext_resource type="Texture2D" uid="uid://ussjaqm7qa4g" path="res://assets/handmade/diver full anim.png" id="2_cvymd"]
 
 [sub_resource type="Curve2D" id="Curve2D_tda70"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6qe86"]
 size = Vector2(16, 29)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jr11b"]
+shader = ExtResource("2_7plv0")
+shader_parameter/active = false
 
 [sub_resource type="Animation" id="Animation_ho77x"]
 length = 0.001
@@ -21,6 +26,46 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [Vector2i(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape2D:shape:size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(16, 29)]
+}
+
+[sub_resource type="Animation" id="Animation_24m4c"]
+resource_name = "downjump"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionShape2D/Diver:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(3, 4)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape2D:shape:size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(16, 29)]
 }
 
 [sub_resource type="Animation" id="Animation_u08ik"]
@@ -38,6 +83,18 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
 "values": [Vector2i(0, 0), Vector2i(1, 0), Vector2i(2, 0), Vector2i(3, 0), Vector2i(4, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape2D:shape:size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(16, 29)]
 }
 
 [sub_resource type="Animation" id="Animation_ireow"]
@@ -57,6 +114,46 @@ tracks/0/keys = {
 "update": 1,
 "values": [Vector2i(0, 3), Vector2i(1, 3), Vector2i(2, 3), Vector2i(3, 3), Vector2i(4, 3), Vector2i(5, 3)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape2D:shape:size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(16, 29)]
+}
+
+[sub_resource type="Animation" id="Animation_66lx3"]
+resource_name = "jump"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionShape2D/Diver:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(0, 4)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape2D:shape:size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(16, 29)]
+}
 
 [sub_resource type="Animation" id="Animation_5urj5"]
 resource_name = "run"
@@ -74,6 +171,18 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [Vector2i(5, 0), Vector2i(0, 1), Vector2i(1, 1), Vector2i(2, 1), Vector2i(3, 1), Vector2i(4, 1), Vector2i(5, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape2D:shape:size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(16, 29)]
 }
 
 [sub_resource type="Animation" id="Animation_7qjcw"]
@@ -93,36 +202,17 @@ tracks/0/keys = {
 "update": 1,
 "values": [Vector2i(0, 2), Vector2i(1, 2), Vector2i(2, 2), Vector2i(3, 2), Vector2i(4, 2), Vector2i(5, 2)]
 }
-
-[sub_resource type="Animation" id="Animation_66lx3"]
-resource_name = "jump"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("CollisionShape2D/Diver:frame_coords")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape2D:shape:size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [Vector2i(0, 4)]
-}
-
-[sub_resource type="Animation" id="Animation_24m4c"]
-resource_name = "downjump"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("CollisionShape2D/Diver:frame_coords")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [Vector2i(3, 4)]
+"update": 0,
+"values": [Vector2(35, 9.5)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_lhwpo"]
@@ -136,16 +226,54 @@ _data = {
 "swim": SubResource("Animation_7qjcw")
 }
 
+[sub_resource type="Animation" id="Animation_q51sh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../blood:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_l8b65"]
+resource_name = "dmg"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../blood:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ox5yx"]
+_data = {
+"RESET": SubResource("Animation_q51sh"),
+"dmg": SubResource("Animation_l8b65")
+}
+
 [node name="Player" type="CharacterBody2D"]
+wall_min_slide_angle = 3.14159
 script = ExtResource("1_uki6t")
-speed = 100.0
 anim_curve = SubResource("Curve2D_tda70")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_6qe86")
 
 [node name="Diver" type="Sprite2D" parent="CollisionShape2D"]
-position = Vector2(0, 0.5)
+material = SubResource("ShaderMaterial_jr11b")
+position = Vector2(1, 0)
 texture = ExtResource("2_cvymd")
 offset = Vector2(0, -1)
 hframes = 6
@@ -159,8 +287,9 @@ libraries = {
 autoplay = "idle"
 
 [node name="blood" type="CPUParticles2D" parent="."]
-visible = false
+emitting = false
 amount = 40
+lifetime = 1.2
 explosiveness = 0.1
 draw_order = 1
 emission_shape = 3
@@ -177,5 +306,15 @@ damping_max = 0.5
 angle_min = -116.4
 angle_max = 80.5
 scale_amount_min = 2.0
-scale_amount_max = 3.0
+scale_amount_max = 5.0
 color = Color(0.670588, 0, 0.0196078, 1)
+
+[node name="dmg timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="dmg" type="AnimationPlayer" parent="dmg timer"]
+libraries = {
+"": SubResource("AnimationLibrary_ox5yx")
+}
+
+[connection signal="timeout" from="dmg timer" to="." method="_on_dmg_timer_timeout"]

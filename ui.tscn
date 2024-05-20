@@ -1,0 +1,58 @@
+[gd_scene load_steps=3 format=3 uid="uid://bamhlhk8abung"]
+
+[ext_resource type="FontFile" uid="uid://cj8m2u3mfx5uw" path="res://assets/fonts/PixelOperator8.ttf" id="1_f6xph"]
+
+[sub_resource type="GDScript" id="GDScript_vqp5d"]
+script/source = "extends Label
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	text = 'airtank left ' +str(round(Main.curtank)) + 's' 
+	
+	
+"
+
+[node name="interface" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -12.0
+offset_top = -2.0
+offset_right = -12.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 120.0
+offset_top = 39.0
+offset_right = 160.0
+offset_bottom = 62.0
+
+[node name="Label" type="Label" parent="Label"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.743
+anchor_right = -0.743
+offset_left = 0.720001
+offset_top = -2.0
+offset_right = 208.72
+offset_bottom = 20.0
+theme_override_colors/font_color = Color(0.466667, 0.498039, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.768627)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.670588)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/outline_size = 15
+theme_override_fonts/font = ExtResource("1_f6xph")
+theme_override_font_sizes/font_size = 21
+text = "airtank 100%"
+script = SubResource("GDScript_vqp5d")
